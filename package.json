@@ -1,0 +1,8 @@
+{
+  "name": "ui5-poc-typed-jsonmodel-downport",
+  "version": "1.0.0",
+  "description": "rough poc, do not copy",
+  "license": "ISC",
+  "author": "Marco Beier",
+  "workspaces": ["com.myorg.myapp", "com.myorg.mylib"]
+}
