@@ -1,25 +1,25 @@
-## PoC downport of `TypedJSONModel`
+## PoC Downport: `TypedJSONModel`
 
-... first introduced during UI5ers live (Aug '25). Everyone wanted to start using it right away but it is only available for UI5 `>=1.140.0`.
+The `TypedJSONModel` was first demoed during UI5ers live (Aug '25), and - unsurprisingly - everyone wanted to use it right away. The catch: it's only available in UI5 `>=1.140.0`.
 
-So Andreas Kunz and Peter Muessig proposed/mentioned a few things (extract from our chat quoted):
+Andreas Kunz and Peter Muessig proposed/mentioned a few things (paraphrased from our chat):
 
-The actual `*.d.ts` snippet that makes the `TypedJSONModel` exist can be found [here](https://github.com/UI5/typescript/blob/main/packages/dts-generator/src/resources/typed-json-model.d.ts). If you add this to your project, you will see the `TypedJSONModel` but it will break at runtime when your code instantiates the `TypedJSONModel` so you would also have to make sure this exists (when tweaking older UI5 versions):
-- Supporting/Connecting classes that "connect" the TS magic with the UI5 framework at runtime
-	- `TypedJSONModel` extension of JSONModel, [here](https://github.com/UI5/openui5/blob/af03f36b36773f9ce0a5def4f4ea50f47d3a91fc/src/sap.ui.core/src/sap/ui/model/json/TypedJSONModel.js)
-	- `TypedJSONContext` extension of Context, [here](https://github.com/UI5/openui5/blob/af03f36b36773f9ce0a5def4f4ea50f47d3a91fc/src/sap.ui.core/src/sap/ui/model/json/TypedJSONContext.js)
+- The TypeScript definition that introduces `TypedJSONModel` is [here](https://github.com/UI5/typescript/blob/main/packages/dts-generator/src/resources/typed-json-model.d.ts). If you just drop this into your project, you’ll see the type, but your app will crash at runtime when you try to instantiate it. Unless you also provide the actual implementation files (remember: this is for older UI5 versions, where none of this exists).
+- To make it work, you need to include the runtime classes that "bridge" the TypeScript definition with the UI5 runtime implementation (or the other way around):
+    - [`TypedJSONModel` (extends JSONModel)](https://github.com/UI5/openui5/blob/af03f36b36773f9ce0a5def4f4ea50f47d3a91fc/src/sap.ui.core/src/sap/ui/model/json/TypedJSONModel.js)
+    - [`TypedJSONContext` (extends Context)](https://github.com/UI5/openui5/blob/af03f36b36773f9ce0a5def4f4ea50f47d3a91fc/src/sap.ui.core/src/sap/ui/model/json/TypedJSONContext.js)
 
-Peter also mentioned: If you inline the module definitions for the `TypedJSONModel` and the `TypedJSONContext` in your application you can also use it as a workaround at runtime. You can add the `.d.ts` on top of that and you should then be good to go for development and runtime. As `TypedJSONModel` and `TypedJSONContext` is barely nothing (kb wise) it negligible from a runtime performance impact perspective.
+Peter’s tip (standalone, non-lib use case): If you inline the module definitions for both `TypedJSONModel` and `TypedJSONContext` in your app, you can get things working at runtime. Add the `.d.ts` file on top, and you’re set for both development and runtime. These two classes are tiny, so there’s no real performance impact.
 
 ## Notes
 
-- I swear I should create more libraries ... most of my time was wasted on missing [this](https://www.youtube.com/watch?v=7aAehB4ejHQ&t=3509s) ...
-- The `typed-json-model.d.ts` received `z` as prefix. As the `.d.ts` needs to be "on top" of the class definition files in the resulting `index.d.ts` after the library was built. I don't think there is a good way to influence this "natively". The building of the file happens in this [part of the transpile task](https://github.com/ui5-community/ui5-ecosystem-showcase/blob/cfaf0739608b699fe6e14079bbd313873b7acdd9/packages/ui5-tooling-transpile/lib/task.js#L202). Sure one could:
-	- adjust the task itself, 
-	- try to improve the inlining maybe (= try to put all of the content of the 3 files into one single file or do some other magic ... but that won't work with a `d.ts` file)
-	- create your own task or some simple post-run script that manually moves the [triple-slash-directive](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html) accordingly
-- I didn't even bother writing custom `.controller` code, it was taken from the official [test example package](https://github.com/UI5/typescript/blob/main/test-packages/typed-json-model/webapp/controller/App.controller.ts)
-- For a quickstart [easy-ui5](https://github.com/ui5-community/generator-easy-ui5) was used; I didn't bother renaming anything
-- Doing this you obviously lose being up-to-date when it comes to the type definition, so you have to check that for yourself until you reach UI5 `>=1.140.0`
+- The `typed-json-model.d.ts` file is prefixed with `z` to ensure it appears before the class definition files in the generated `index.d.ts` of the library after build. There’s no elegant way to control this natively. The relevant build step is [here](https://github.com/ui5-community/ui5-ecosystem-showcase/blob/cfaf0739608b699fe6e14079bbd313873b7acdd9/packages/ui5-tooling-transpile/lib/task.js#L202). You could:
+    - Patch the build task (though ... not worth for this niche/dirty scenario),
+    - Try to inline everything into a single file (not feasible for `.d.ts`),
+    - Or write a post-build script to move the [triple-slash directive](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html) as needed.
+- Test the implementation in the `Main.controller.ts` of the application. I didn’t write any code there myself actually, just borrowed it from the [official test package](https://github.com/UI5/typescript/blob/main/test-packages/typed-json-model/webapp/controller/App.controller.ts).
+- For setup, I used [easy-ui5](https://github.com/ui5-community/generator-easy-ui5) and left everything with the default names.
+- Obviously, this approach means you’re responsible for keeping the type definitions up to date until you’re on UI5 `>=1.140.0`.
+- Pro tip: I should really create more libraries. Most of my time was lost because I missed [this video](https://www.youtube.com/watch?v=7aAehB4ejHQ&t=3509s) ...
 
-**This is a simple test. Nothing in here is considered best or even good practice. Some of the files (i.e. test directories, etc.) were removed to "declutter" this poc, at least for the lib folder.**
+**This is just a quick test. Nothing here is best practice (or even good practice). I’ve removed some files (like test directories) to keep the PoC focused, at least in the lib folder.**
