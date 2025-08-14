@@ -1,4 +1,4 @@
-## PoC downport of TypedJSONModel
+## PoC downport of `TypedJSONModel`
 
 ... first introduced during UI5ers live (Aug '25). Everyone wanted to start using it right away but it is only available for UI5 `>=1.140.0`.
 
@@ -6,8 +6,8 @@ So Andreas Kunz and Peter Muessig proposed/mentioned a few things (extract from 
 
 The actual `*.d.ts` snippet that makes the `TypedJSONModel` exist can be found [here](https://github.com/UI5/typescript/blob/main/packages/dts-generator/src/resources/typed-json-model.d.ts). If you add this to your project, you will see the `TypedJSONModel` but it will break at runtime when your code instantiates the `TypedJSONModel` so you would also have to make sure this exists (when tweaking older UI5 versions):
 - Supporting/Connecting classes that "connect" the TS magic with the UI5 framework at runtime
-	- TypedJSONModel extension of JSONModel, [here](https://github.com/UI5/openui5/blob/af03f36b36773f9ce0a5def4f4ea50f47d3a91fc/src/sap.ui.core/src/sap/ui/model/json/TypedJSONModel.js)
-	- TypedJSONContext extension of Context, [here](https://github.com/UI5/openui5/blob/af03f36b36773f9ce0a5def4f4ea50f47d3a91fc/src/sap.ui.core/src/sap/ui/model/json/TypedJSONContext.js)
+	- `TypedJSONModel` extension of JSONModel, [here](https://github.com/UI5/openui5/blob/af03f36b36773f9ce0a5def4f4ea50f47d3a91fc/src/sap.ui.core/src/sap/ui/model/json/TypedJSONModel.js)
+	- `TypedJSONContext` extension of Context, [here](https://github.com/UI5/openui5/blob/af03f36b36773f9ce0a5def4f4ea50f47d3a91fc/src/sap.ui.core/src/sap/ui/model/json/TypedJSONContext.js)
 
 Peter also mentioned: If you inline the module definitions for the `TypedJSONModel` and the `TypedJSONContext` in your application you can also use it as a workaround at runtime. You can add the `.d.ts` on top of that and you should then be good to go for development and runtime. As `TypedJSONModel` and `TypedJSONContext` is barely nothing (kb wise) it negligible from a runtime performance impact perspective.
 
@@ -20,5 +20,6 @@ Peter also mentioned: If you inline the module definitions for the `TypedJSONMod
 	- create your own task or some simple post-run script that manually moves the [triple-slash-directive](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html) accordingly
 - I didn't even bother writing custom `.controller` code, it was taken from the official [test example package](https://github.com/UI5/typescript/blob/main/test-packages/typed-json-model/webapp/controller/App.controller.ts)
 - For a quickstart [easy-ui5](https://github.com/ui5-community/generator-easy-ui5) was used; I didn't bother renaming anything
+- Doing this you obviously lose being up-to-date when it comes to the type definition, so you have to check that for yourself until you reach UI5 `>=1.140.0`
 
 **This is a simple test. Nothing in here is considered best or even good practice. Some of the files (i.e. test directories, etc.) were removed to "declutter" this poc, at least for the lib folder.**
