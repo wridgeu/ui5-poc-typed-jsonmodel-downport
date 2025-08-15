@@ -45,6 +45,7 @@ As you can see without declaration merging, the order of the triple slash direct
 ![declaration_merging_nav_to_source](./img/default_export_wrong_triple_slash_directive_order.png)
 
 > [!NOTE]  
-> It should also be possible to split up the type of `TypedJSONModelTypes.d.ts` into their respective class/module definitions.
+> It is also be possible to split up the type of `TypedJSONModelTypes.d.ts` into their respective class/module definitions entirely, getting rid of the additional `d.ts` file in the first place.
+> This can be seen [here](https://github.com/wridgeu/ui5-poc-typed-jsonmodel-downport/tree/merge-augmentation-and-class/com.myorg.mylib/src). Not manually splitting it up however, allows for easier maintenance (copying the original file from the UI5 frmwk source).
 
 **This is just a quick test. Nothing here is best practice (or even good practice). I’ve removed some files (like test directories) to keep the PoC focused, at least in the lib folder.**
