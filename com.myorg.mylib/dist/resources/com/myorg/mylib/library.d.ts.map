@@ -1,0 +1,1 @@
+{"version":3,"file":"library.d.ts","sourceRoot":"..\\..\\..\\..\\..","sources":["src\\library.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,yBAAyB,CAAC;IASzC,OAAO,qBAAqB,CAAC;IAE7B;;OAEG;IAGH,MAAM,OAAO,EAAE;QAAE,CAAC,GAAG,EAAE,MAAM,GAAG,OAAO,CAAA;KAYP,CAAC;IAGjC,eAAe,OAAO,CAAC;CAEtB"}

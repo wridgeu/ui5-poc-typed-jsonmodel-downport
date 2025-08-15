@@ -13,10 +13,16 @@ Peter’s tip (standalone, non-lib use case): If you inline the module definitio
 
 ## Notes
 
-- The `typed-json-model.d.ts` file is prefixed with `z` to ensure it appears before the class definition files in the generated `index.d.ts` of the library after build. There’s no elegant way to control this natively. The relevant build step is [here](https://github.com/ui5-community/ui5-ecosystem-showcase/blob/cfaf0739608b699fe6e14079bbd313873b7acdd9/packages/ui5-tooling-transpile/lib/task.js#L202). You could:
-    - Patch the build task (though ... not worth for this niche/dirty scenario),
-    - Try to inline everything into a single file (not feasible for `.d.ts`),
-    - Or write a post-build script to move the [triple-slash directive](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html) as needed.
+- After building the library the sorting order of the generated `.d.ts` triple slash directives inside the resulting `dist/index.d.ts` file is arbitrary and cannot be consistently influenced by a simple file rename. The relevant implementation of the build step can be found [here](https://github.com/ui5-community/ui5-ecosystem-showcase/blob/cfaf0739608b699fe6e14079bbd313873b7acdd9/packages/ui5-tooling-transpile/lib/task.js#L202). You could:
+    - Patch the build task (though ... not worth for this niche/dirty scenario).
+        - *Hint:* Using the config of the task itself, I wasn't able to exclude the files to maybe prevent the generation of the `d.ts` files for the empty classes themselves. Thus hoping to solve the declaration overshadowing. I currently don't know if they're 100% required for the lib to function in the first place to be honest. At first glance I also didn't see such an option within a babel configuration (possibly making use of providing a custom babel config).
+    - Try to inline everything into a single file (not feasible for `.d.ts` files).
+    - Or write a post-build script to move the [triple-slash directive](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html) as needed, which is what I (w. help of AI) have done here.
+    ```ts
+    /// <reference path="./resources/com/myorg/mylib/TypedJSONModelTypes.d.ts"/> <<< needs come 1st, if it wouldn't, your IDE would throw errs
+    /// <reference path="./resources/com/myorg/mylib/TypedJSONModel.d.ts"/>
+    /// <reference path="./resources/com/myorg/mylib/TypedJSONContext.d.ts"/>
+    ```
 - Test the implementation in the `Main.controller.ts` of the application. I didn’t write any code there myself actually, just borrowed it from the [official test package](https://github.com/UI5/typescript/blob/main/test-packages/typed-json-model/webapp/controller/App.controller.ts).
 - For setup, I used [easy-ui5](https://github.com/ui5-community/generator-easy-ui5) and left everything with the default names.
 - Obviously, this approach means you’re responsible for keeping the type definitions up to date until you’re on UI5 `>=1.140.0`.

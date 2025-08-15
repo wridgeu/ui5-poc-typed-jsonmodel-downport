@@ -1,0 +1,39 @@
+{
+  "_version": "1.21.0",
+  "sap.app": {
+    "id": "com.myorg.mylib",
+    "type": "library",
+    "embeds": [],
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "com.myorg.mylib",
+    "description": "Some description about com.myorg.mylib",
+    "resources": "resources.json",
+    "offline": true
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "supportedThemes": []
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.130",
+      "libs": {
+        "sap.ui.core": {
+          "minVersion": "1.130.0"
+        }
+      }
+    },
+    "library": {
+      "i18n": false,
+      "css": false,
+      "content": {
+        "controls": [],
+        "elements": [],
+        "types": [],
+        "interfaces": []
+      }
+    }
+  }
+}
