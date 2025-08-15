@@ -29,7 +29,7 @@ Peter’s tip (standalone, non-lib use case): If you inline the module definitio
     - Patch the build task (though ... not worth for this niche/dirty scenario).
         - *Hint:* Using the config of the task itself, I wasn't able to exclude the files to maybe prevent the generation of the `d.ts` files for the empty classes themselves. Thus hoping to solve the declaration overshadowing. I currently don't know if they're 100% required for the lib to function in the first place to be honest. At first glance I also didn't see such an option within a babel configuration (possibly making use of providing a custom babel config).
     - Try to inline everything into a single file (not feasible for `.d.ts` files).
-    - Or write a "postbuild"-script to move the [triple-slash directive](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html) as needed, which is what I (w. help of AI) **had** done in this [commit](7fff38e8405a37e7cd172441b70f75e52cd3f9b6).
+    - Or write a "postbuild"-script to move the [triple-slash directive](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html) as needed, which is what I (w. help of AI) **had** done in this [commit](https://github.com/wridgeu/ui5-poc-typed-jsonmodel-downport/tree/7fff38e8405a37e7cd172441b70f75e52cd3f9b6).
     ```ts
     /// <reference path="./resources/com/myorg/mylib/TypedJSONModelTypes.d.ts"/> <<< needs come 1st, if it wouldn't, your IDE would throw errs
     /// <reference path="./resources/com/myorg/mylib/TypedJSONModel.d.ts"/>
