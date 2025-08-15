@@ -27,5 +27,4 @@
 //   - @types/estree@1.0.8
 /// <reference path="./resources/com/myorg/mylib/TypedJSONModel.d.ts"/>
 /// <reference path="./resources/com/myorg/mylib/TypedJSONContext.d.ts"/>
-/// <reference path="./resources/com/myorg/mylib/TypedJSONModelTypes.d.ts"/>
 /// <reference path="./resources/com/myorg/mylib/library.d.ts"/>

@@ -3,6 +3,8 @@ declare module "com/myorg/mylib/TypedJSONContext" {
      * ${copyright}
      */
     import Context from "sap/ui/model/Context";
+    import TypedJSONModel from "com/myorg/mylib/TypedJSONModel";
+    import { AbsoluteBindingPath, RelativeBindingPath, PropertyByRelativeBindingPath } from "com/myorg/mylib/TypedJSONModel";
     /**
      * Constructor for a new <code>com.myorg.mylib.TypedJSONContext</code>.
      *
@@ -20,6 +22,18 @@ declare module "com/myorg/mylib/TypedJSONContext" {
      * @name com.myorg.mylib.TypedJSONContext
      */
     class TypedJSONContext extends Context {
+    }
+    module "com/myorg/mylib/TypedJSONContext" {
+        /**
+         * TypedJSONContext is a subclass of Context that provides type-safe access to the model data. It is only available when using UI5 with TypeScript.
+         *
+         * @since 1.140.0
+         */
+        export default class TypedJSONContext<Data extends object, Root extends AbsoluteBindingPath<Data>> extends Context {
+            constructor(oModel: TypedJSONModel<Data>, sPath: Root);
+            getModel(): TypedJSONModel<Data>;
+            getProperty<P extends RelativeBindingPath<Data, Root>>(sPath: P extends RelativeBindingPath<Data, Root> ? P : never): PropertyByRelativeBindingPath<Data, Root, P>;
+        }
     }
 }
 //# sourceMappingURL=TypedJSONContext.d.ts.map
