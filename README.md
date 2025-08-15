@@ -20,6 +20,7 @@ Peter’s tip (standalone, non-lib use case): If you inline the module definitio
 - Test the implementation in the `Main.controller.ts` of the application. I didn’t write any code there myself actually, just borrowed it from the [official test package](https://github.com/UI5/typescript/blob/main/test-packages/typed-json-model/webapp/controller/App.controller.ts).
 - For setup, I used [easy-ui5](https://github.com/ui5-community/generator-easy-ui5) and left everything with the default names.
 - Obviously, this approach means you’re responsible for keeping the type definitions up to date until you’re on UI5 `>=1.140.0`.
+- Doing it with a library and maybe distributing it via npm begs the question about versioning i.e. providing a min UI5 version but still allowing it to be used for anything higher than that. If you have ideas for that, I'd be open to hear them.
 - Pro tip: I should really create more libraries. Most of my time was lost because I missed [this video](https://www.youtube.com/watch?v=7aAehB4ejHQ&t=3509s) ...
 
 **This is just a quick test. Nothing here is best practice (or even good practice). I’ve removed some files (like test directories) to keep the PoC focused, at least in the lib folder.**
