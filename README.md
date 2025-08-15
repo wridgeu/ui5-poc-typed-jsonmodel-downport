@@ -45,6 +45,6 @@ As you can see without declaration merging, the order of the triple slash direct
 ![declaration_merging_nav_to_source](./img/default_export_wrong_triple_slash_directive_order.png)
 
 > [!NOTE]  
-> It should also be possible to split up the type of `TypedJSONModelTypes.d.ts` into their respective class/module definitions. But I didn't want to fiddle (too much) with the import/export statements used inside this file as for example an err here reads like: "Imports are not permitted in module augmentations. Consider moving them to the enclosing external module.".
+> It should also be possible to split up the type of `TypedJSONModelTypes.d.ts` into their respective class/module definitions.
 
 **This is just a quick test. Nothing here is best practice (or even good practice). I’ve removed some files (like test directories) to keep the PoC focused, at least in the lib folder.**
