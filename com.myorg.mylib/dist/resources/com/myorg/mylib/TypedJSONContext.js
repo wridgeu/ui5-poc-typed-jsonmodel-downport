@@ -1,5 +1,5 @@
 /*!
  * ${copyright}
  */
-sap.ui.define(["sap/ui/model/Context"],function(e){"use strict";const t=e.extend("com.myorg.mylib.TypedJSONContext",{});return t});
+sap.ui.define(["sap/ui/model/Context"],function(e){"use strict";class t extends e{}var s={__esModule:true};s.TypedJSONContext=t;return s});
 //# sourceMappingURL=TypedJSONContext.js.map

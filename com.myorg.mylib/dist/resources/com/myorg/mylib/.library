@@ -5,7 +5,7 @@
 	<version>1.0.0</version>
 	<copyright>${copyright}</copyright>
 	<title>com.myorg.mylib</title>
-	<documentation>Some description about com.myorg.mylib</documentation>
+	<documentation>example lib for typed json model downport - do not reuse</documentation>
 	<dependencies>
 		<dependency>
 			<libraryName>sap.ui.core</libraryName>

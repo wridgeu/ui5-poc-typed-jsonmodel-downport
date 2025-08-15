@@ -19,7 +19,7 @@ declare module "com/myorg/mylib/TypedJSONModel" {
      * @public
      * @name com.myorg.mylib.TypedJSONModel
      */
-    export default class TypedJSONModel extends JSONModel {
+    class TypedJSONModel extends JSONModel {
     }
 }
 //# sourceMappingURL=TypedJSONModel.d.ts.map

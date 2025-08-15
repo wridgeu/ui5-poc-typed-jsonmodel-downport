@@ -8,7 +8,7 @@
       "version": "1.0.0"
     },
     "title": "com.myorg.mylib",
-    "description": "Some description about com.myorg.mylib",
+    "description": "example lib for typed json model downport - do not reuse",
     "resources": "resources.json",
     "offline": true
   },

@@ -20,4 +20,4 @@ import JSONModel from "sap/ui/model/json/JSONModel";
  * @public
  * @name com.myorg.mylib.TypedJSONModel
  */
-export default class TypedJSONModel extends JSONModel {}
+export class TypedJSONModel extends JSONModel {}

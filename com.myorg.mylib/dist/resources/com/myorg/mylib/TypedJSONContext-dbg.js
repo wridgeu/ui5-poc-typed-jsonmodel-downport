@@ -20,7 +20,11 @@ sap.ui.define(["sap/ui/model/Context"], function (Context) {
    * @public
    * @name com.myorg.mylib.TypedJSONContext
    */
-  const TypedJSONContext = Context.extend("com.myorg.mylib.TypedJSONContext", {});
-  return TypedJSONContext;
+  class TypedJSONContext extends Context {}
+  var __exports = {
+    __esModule: true
+  };
+  __exports.TypedJSONContext = TypedJSONContext;
+  return __exports;
 });
 //# sourceMappingURL=TypedJSONContext-dbg.js.map
