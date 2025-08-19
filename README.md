@@ -11,13 +11,20 @@ Andreas Kunz and Peter Muessig proposed/mentioned a few things (paraphrased from
 
 Peter’s tip (standalone, non-lib use case): If you inline the module definitions for both `TypedJSONModel` and `TypedJSONContext` in your app, you can get things working at runtime. Add the `.d.ts` file on top, and you’re set for both development and runtime. These two classes are tiny, so there’s no real performance impact.
 
+## Approaches in this repository
+
+- [X] add as library (see: `com.myorg.myapp` + `com.myorg.mylib`)
+- [X] add as module  (see: `com.myorg.myapp.modc` + `com.myorg.mymodule`)
+    - note: the module itself does not have a build/transpile step. In fact it is kept super bare the transpilation will/can be done by the consuming application, see the `/resources` folder of `com.myorg.myapp.modc` at runtime
+
 ## Notes
 
-- Test the typing hints in the `Main.controller.ts` of the application. I didn’t write any code there myself actually, just quickly borrowed it from the [official test package](https://github.com/UI5/typescript/blob/main/test-packages/typed-json-model/webapp/controller/App.controller.ts).
+- Test the typing hints in the `Main.controller.ts` of the application(s). I didn’t write any code there myself actually, just quickly borrowed it from the [official test package](https://github.com/UI5/typescript/blob/main/test-packages/typed-json-model/webapp/controller/App.controller.ts).
 - For the initial setup, I used [easy-ui5](https://github.com/ui5-community/generator-easy-ui5) and left everything with the default names/namespaces.
-- Obviously, this approach means you’re responsible for keeping the type definition(s) up to date until you’re on UI5 `>=1.140.0`.
-- Implementing it as a library and distributing it via npm begs the question about versioning for example: providing a min UI5 version but still allowing it to be used for anything higher than that or make it version flexible up to a min version(?). If you have ideas for that, I'd be open to hear them.
-- Pro tip: I should really create more libraries. Most of my time was lost because I missed [this video](https://www.youtube.com/watch?v=7aAehB4ejHQ&t=3509s) ...
+- Obviously, these approaches mean you’re responsible for keeping the type definition(s) up to date until you’re on UI5 `>=1.140.0`.
+- Implementing it as a library and distributing it via npm begs the question about versioning for example: providing a min UI5 version but still allowing it to be used for anything higher than that or make it version flexible up to a min version(?). If you have ideas for that, I'd be open to hear them. A module does not have this "issue".
+- Pro tip: I should really create more libraries. Most of my time was lost because I missed [this video](https://www.youtube.com/watch?v=7aAehB4ejHQ&t=3509s).
+    - also: make sure to list your `d.ts` file in your the `types`-property of the `package.json` so that it can be picked up when the dependency is added to the `tsconfig.json` of your consuming application
 
 ### Things to consider for the build (& making the consumption work)
 
@@ -47,5 +54,8 @@ As you can see without declaration merging, the order of the triple slash direct
 > [!NOTE]  
 > It is also be possible to split up the type of `TypedJSONModelTypes.d.ts` into their respective class/module definitions entirely, getting rid of the additional `d.ts` file in the first place.
 > This can be seen [here](https://github.com/wridgeu/ui5-poc-typed-jsonmodel-downport/tree/merge-augmentation-and-class/com.myorg.mylib/src). Not manually splitting it up however, allows for easier maintenance (copying the original file from the UI5 frmwk source).
+
+> [!NOTE]  
+> Working with named exports will lead to a different transpilation output than you might be used to. Make sure to properly import your dependencies then. If you haven't adjusted the `d.ts` file yet, you'll also get a typescript error for the import. This is then due to your module augmentation being out of sync with the actual implementation, so also remove the "default" keyword in your type definition.
 
 **This is just a quick test. Nothing here is best practice (or even good practice). I’ve removed some files (like test directories) to keep the PoC focused, at least in the lib folder.**

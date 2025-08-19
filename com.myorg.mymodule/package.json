@@ -1,0 +1,10 @@
+{
+  "name": "com.myorg.mymodule",
+  "version": "1.0.0",
+  "description": "some module",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Marco Beier",
+  "license": "ISC",
+  "types": "TypedJSONModelTypes.d.ts"
+}

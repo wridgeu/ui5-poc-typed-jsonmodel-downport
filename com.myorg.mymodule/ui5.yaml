@@ -1,0 +1,9 @@
+specVersion: "4.0"
+metadata:
+  name: com.myorg.mymodule
+type: module
+
+resources:
+  configuration:
+    paths:
+      /resources/com/myorg/mymodule/: "./"

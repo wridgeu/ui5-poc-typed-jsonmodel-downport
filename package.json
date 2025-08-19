@@ -4,5 +4,13 @@
   "description": "rough poc, do not copy",
   "license": "ISC",
   "author": "Marco Beier",
-  "workspaces": ["com.myorg.myapp", "com.myorg.mylib"]
+  "workspaces": [
+    "com.myorg.myapp",
+    "com.myorg.mylib",
+    "com.myorg.mymodule",
+    "com.myorg.mymodule.modc"
+  ],
+  "devDependencies": {
+    "@openui5/types": "^1.139.0"
+  }
 }
