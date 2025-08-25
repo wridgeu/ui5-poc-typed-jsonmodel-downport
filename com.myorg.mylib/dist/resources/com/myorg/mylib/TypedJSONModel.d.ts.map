@@ -1,1 +1,1 @@
-{"version":3,"file":"TypedJSONModel.d.ts","sourceRoot":"..\\..\\..\\..\\..","sources":["src\\TypedJSONModel.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,gCAAgC,CAAC;IAChD;;OAEG;IAEH,OAAO,SAAS,MAAM,6BAA6B,CAAC;IAEpD;;;;;;;;;;;;;;;OAeG;IACH,MAAa,cAAe,SAAQ,SAAS;KAAG;CAC/C"}
+{"version":3,"file":"TypedJSONModel.d.ts","sourceRoot":"..\\..\\..\\..\\..","sources":["src\\TypedJSONModel.ts"],"names":[],"mappings":"AAAA,OAAO,QAAQ,gCAAgC,CAAC;IAChD;;OAEG;IAEH,OAAO,SAAS,MAAM,6BAA6B,CAAC;IAEpD;;;;;;;;;;;;;;;OAeG;IACH,MAAM,CAAC,OAAO,OAAO,cAAe,SAAQ,SAAS;KAAG;CACvD"}

@@ -19,7 +19,7 @@ declare module "com/myorg/mylib/TypedJSONContext" {
      * @public
      * @name com.myorg.mylib.TypedJSONContext
      */
-    class TypedJSONContext extends Context {
+    export default class TypedJSONContext extends Context {
     }
 }
 //# sourceMappingURL=TypedJSONContext.d.ts.map

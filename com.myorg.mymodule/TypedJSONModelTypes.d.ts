@@ -1,7 +1,7 @@
 declare module "com/myorg/mymodule/TypedJSONModel" {
   import JSONModel from "sap/ui/model/json/JSONModel";
-  import TypedJSONContext from "com/myorg/mymodule/TypedJSONContext";
-  import Context from "sap/ui/model/Context";
+  import type TypedJSONContext from "com/myorg/mymodule/TypedJSONContext";
+  import type Context from "sap/ui/model/Context";
 
   /**
    * TypedJSONModel is a subclass of JSONModel that provides type-safe access to the model data. It is only available when using UI5 with TypeScript.
@@ -226,8 +226,8 @@ declare module "com/myorg/mymodule/TypedJSONModel" {
 
 declare module "com/myorg/mymodule/TypedJSONContext" {
   import Context from "sap/ui/model/Context";
-  import TypedJSONModel from "com/myorg/mymodule/TypedJSONModel";
-  import {
+  import type TypedJSONModel from "com/myorg/mymodule/TypedJSONModel";
+  import type {
     AbsoluteBindingPath,
     RelativeBindingPath,
     PropertyByRelativeBindingPath,

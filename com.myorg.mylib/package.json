@@ -19,6 +19,8 @@
 	"scripts": {
 		"clean": "rimraf dist coverage",
 		"build": "ui5 build --clean-dest",
+		"postbuild": "node util/fix-triple-slash-order.js && npm run test:postbuild",
+		"test:postbuild": "node util/test-triple-slash-order.js",
 		"build:ts-interfaces": "npx @ui5/ts-interface-generator",
 		"start": "ui5 serve -o test-resources/com/myorg/mylib/Example.html",
 		"start:dist": "npm start -- --config ui5-dist.yaml",

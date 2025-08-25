@@ -53,7 +53,7 @@ export default class Main extends BaseController {
 
 	public sayHello(): void {
 
-		this.model.setProperty("/order/approved", false )
+		this.model.setProperty("/order/approved", true )
 		// this.model.setProperty("/order/approved", "" ) //< err
 
 		MessageBox.show("Hello World!");

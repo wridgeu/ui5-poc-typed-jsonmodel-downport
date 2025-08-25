@@ -20,4 +20,4 @@ import Context from "sap/ui/model/Context";
  * @public
  * @name com.myorg.mylib.TypedJSONContext
  */
-export class TypedJSONContext extends Context {}
+export default class TypedJSONContext extends Context {}

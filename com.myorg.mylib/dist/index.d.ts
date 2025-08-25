@@ -25,7 +25,7 @@
 //   - @types/istanbul-lib-coverage@2.0.6
 //   - @types/http-cache-semantics@4.0.4
 //   - @types/estree@1.0.8
-/// <reference path="./resources/com/myorg/mylib/TypedJSONModel.d.ts"/>
-/// <reference path="./resources/com/myorg/mylib/TypedJSONContext.d.ts"/>
 /// <reference path="./resources/com/myorg/mylib/TypedJSONModelTypes.d.ts"/>
 /// <reference path="./resources/com/myorg/mylib/library.d.ts"/>
+/// <reference path="./resources/com/myorg/mylib/TypedJSONContext.d.ts"/>
+/// <reference path="./resources/com/myorg/mylib/TypedJSONModel.d.ts"/>

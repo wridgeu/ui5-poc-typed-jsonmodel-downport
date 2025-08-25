@@ -20,11 +20,7 @@ sap.ui.define(["sap/ui/model/json/JSONModel"], function (JSONModel) {
    * @public
    * @name com.myorg.mylib.TypedJSONModel
    */
-  class TypedJSONModel extends JSONModel {}
-  var __exports = {
-    __esModule: true
-  };
-  __exports.TypedJSONModel = TypedJSONModel;
-  return __exports;
+  const TypedJSONModel = JSONModel.extend("com.myorg.mylib.TypedJSONModel", {});
+  return TypedJSONModel;
 });
 //# sourceMappingURL=TypedJSONModel-dbg.js.map

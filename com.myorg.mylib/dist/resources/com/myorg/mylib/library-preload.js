@@ -2,11 +2,11 @@
 /*!
  * ${copyright}
  */
-sap.ui.predefine("com/myorg/mylib/TypedJSONContext", ["sap/ui/model/Context"],function(e){"use strict";class t extends e{}var s={__esModule:true};s.TypedJSONContext=t;return s});
+sap.ui.predefine("com/myorg/mylib/TypedJSONContext", ["sap/ui/model/Context"],function(e){"use strict";const t=e.extend("com.myorg.mylib.TypedJSONContext",{});return t});
 /*!
  * ${copyright}
  */
-sap.ui.predefine("com/myorg/mylib/TypedJSONModel", ["sap/ui/model/json/JSONModel"],function(e){"use strict";class s extends e{}var d={__esModule:true};d.TypedJSONModel=s;return d});
+sap.ui.predefine("com/myorg/mylib/TypedJSONModel", ["sap/ui/model/json/JSONModel"],function(e){"use strict";const o=e.extend("com.myorg.mylib.TypedJSONModel",{});return o});
 /*!
  * ${copyright}
  */

@@ -80,6 +80,13 @@ npm run lint
 
 This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.
 
----
+## Learning on TS during implementation
 
-###### This template is provided to you by Wouter Lemaire and contributors :wink:
+=> https://www.typescriptlang.org/docs/handbook/declaration-merging.html#disallowed-merges -- You cannot declaration merge a class with another class. So a `.d.ts` file that declares the class (no matter if named or default export) will not get merged. You will have a wrong behavior no matter how you mix it. It might happen that your design-time code completion works due to a somehow correct import but it won't work at runtime due to the mismatch of import vs export behavior (i.e. `.d.ts` declares default export so you import it like that but the actual implementation does a named export leading to a runtime error).
+
+Here you can see what happens if the import is correct (runtime definition file/module) but the type isn't pulled (due to being overshadowed in the triple slash directive).
+![declaration_merging_nav_to_source](../img/default_export_wrong_triple_slash_directive_order.png)
+
+> [!NOTE]  
+> It is also be possible to split up the type of `TypedJSONModelTypes.d.ts` into their respective class/module definitions entirely, getting rid of the additional `d.ts` file in the first place.
+> ~~This can be seen [here](https://github.com/wridgeu/ui5-poc-typed-jsonmodel-downport/tree/merge-augmentation-and-class/com.myorg.mylib/src). Not manually splitting it up however, allows for easier maintenance (copying the original file from the UI5 frmwk source).~~ This was done under the false assumption of declaration merging and is wrong. Here I mix default and named exports leading to a correct development experience (depending on the import) but wrong runtime behavior.

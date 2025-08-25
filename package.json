@@ -8,7 +8,7 @@
     "com.myorg.myapp",
     "com.myorg.mylib",
     "com.myorg.mymodule",
-    "com.myorg.mymodule.modc"
+    "com.myorg.myapp.modc"
   ],
   "devDependencies": {
     "@openui5/types": "^1.139.0"
